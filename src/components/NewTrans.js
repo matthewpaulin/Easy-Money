@@ -1,5 +1,6 @@
 import React, {useState, useContext} from 'react'
 import {GlobalContext} from '../context/GlobalState';
+import uuid from 'react-uuid';
 
 export const NewTrans = () => {
     const [text, setText] = useState('');
@@ -10,7 +11,7 @@ export const NewTrans = () => {
         e.preventDefault();
 
         const newTrans = {
-            id: Math.floor(Math.random()*1000),//change this to uuid
+            id: uuid(),
             text,
             amount: +amnt
         }

@@ -4,6 +4,10 @@ import firebase from '../firebase';
 function AcctList(){
     const [accounts, setAccounts] = useState([]);
 
+    let user = firebase.auth().currentUser.uid;
+
+    // db.collection("stories").where("author", "==", user.uid).get();
+
     useEffect(() =>{
         firebase.firestore().collection('accounts')
             .onSnapshot((snapshot)=>{

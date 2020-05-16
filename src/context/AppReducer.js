@@ -12,19 +12,7 @@ export default(state, action) =>{
                 ...state,
                 transactions: [action.payload,...state.transactions]
             }
-
-        case 'LOGIN':
-            return{
-                ...state,
-                user: action.payload
-            }
-
-        case 'LOGOUT':
-            return{
-                ...state,
-                user: action.payload
-            }
-
+            
         default:
             return state;
     }
