@@ -75,13 +75,48 @@ h4 {
   box-shadow: var(--box-shadow);
   margin: 5px;
   padding: 5px;
+  display: flex;
 }
 
-.accounts span + span{
-  float: right;
-
+#account{
+  display: flex;
+  flex-wrap: nowrap;
+  width: 90%;
+}
+#account-name{
+  display: inline-block;
+  width: 43%;
+  overflow-wrap: break-word;
+}
+#account-value{
+  text-align: right;
+  margin-left: auto;
+  display: inline-block;
+  width: 43%;
+  overflow-wrap: break-word;
 }
 
+#delete-account{
+  margin: 1%;
+  text-align: right;
+  width: 8%;
+}
+
+.del-acc-btn{
+  background-color: #ccc;
+  color: white;
+  border: 1px solid transparent;
+}
+
+.del-acc-btn:hover{
+  margin: 0;
+  border: 1px solid #444;
+  background: #e74c3c;
+}
+
+#add-account{
+  display: none;
+}
 
 .negative-balance{
   color: black;
@@ -98,10 +133,6 @@ h4 {
   float: right;
   border-radius: 50%;
 }
-
-
-
-
 
 .money {
   font-size: 20px;

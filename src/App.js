@@ -18,10 +18,12 @@ import './App.css';
 function App() {
   return (
     <GlobalProvider>
-      <Accounts/>
-      <AddAccount/>
-     <Header/>
      <div className="container">  
+        <Accounts/>
+        <span id="add-account">
+          <AddAccount/>
+        </span>
+        <Header/>
         <Balance/>
         <Income/>
         <Transactions/>

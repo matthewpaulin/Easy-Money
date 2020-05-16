@@ -20,18 +20,20 @@ function AcctList(){
 
 export const Accounts = () => {
     const accounts = AcctList();
-    const submit = e => {
-        e.preventDefault();
-        // setShowForm(true);
-    }
     return (
         <div className="accounts-container">
-            <div>
-                <h2>Accounts</h2>
-                {accounts.map((account) =>
-                    <div key={account.id} className="accounts">
-                        <span>{account.title}</span>
-                        <span className={account.value <= 0 ? 'negative-balance' : 'positive-balance'}>${account.value}</span>
+            <h2>Accounts</h2>
+            {accounts.map((account) =>
+                <div key={account.id} className="accounts">
+                    <div id="account">
+                        <div id="account-name">
+                            {account.title}
+                        </div>
+                        <div id="account-value">
+                            <span className={account.value <= 0 ? 'negative-balance' : 'positive-balance'}>${account.value}</span>
+                        </div>
+                    </div>
+                    <div id="delete-account">
                         <button onClick = {() =>{
                             firebase.firestore().collection('accounts')
                                 .doc(account.id).delete().then(function() {
@@ -40,11 +42,13 @@ export const Accounts = () => {
                                     console.error("Error removing document: ", error);
                                 })}
                         }
-                        className= "">x</button>
+                        className= "del-acc-btn">x</button>
                     </div>
-                )}
-                <button className="addAccount">+</button> 
-            </div>
+                </div>
+            )}
+            <button className="addAccount" onClick={()=>
+                document.getElementById("add-account").style.display='block'
+            }>+</button> 
         </div>
     )
 }

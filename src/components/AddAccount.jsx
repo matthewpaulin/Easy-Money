@@ -12,13 +12,16 @@ export const AddAccount = () => {
 
     const submit = e => {
         e.preventDefault();
-        firebase.firestore().collection('accounts').add({
-            title: name,
-            value: parseFloat(balance)
-        }).then(() => {
-            setName('');
-            setBalance('');
-        })
+        if(name!==""){
+            firebase.firestore().collection('accounts').add({
+                title: name,
+                value: balance !== "" ? parseFloat(balance) : 0
+            }).then(() => {
+                setName('');
+                setBalance('');
+            })
+        }
+        document.getElementById("add-account").style.display='none'
     }
 
     return (
