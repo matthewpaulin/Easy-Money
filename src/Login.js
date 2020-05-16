@@ -15,15 +15,18 @@ export const Login = () =>
 
     return (
         <div>
-            <h1>Login</h1>
-            <button onClick={() => {
+            <h1 id="login-text">Login</h1>
+            <div className="login-buttons">
+            <button className="glow-on-hover" onClick={() => {
                 firebase.app().auth().signInAnonymously();
                 console.log("logged in!")}}>Sign in anonymously</button>
-            
-            <button onClick={() => {
+            </div>
+            <div className="login-buttons">
+            <button className="glow-on-hover" onClick={() => {
                 const google = new firebase.auth.GoogleAuthProvider();
                 firebase.auth().signInWithPopup(google)
-                console.log("logged in with google!")}}>Google Sign in</button>
+                console.log("logged in with google!")}}>Sign in with Google</button>
+            </div>
         </div>
     )
 }
