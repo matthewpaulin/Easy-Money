@@ -13,10 +13,14 @@ export const Home = () => {
     return (
         <div>
             <Header/>
-
-            <h1>Home</h1>
-            <button onClick={() => app.auth().signOut()}>Sign Out</button> 
-
+            <>
+            <div id="home-text"> 
+                <h1>Home</h1>
+            </div>
+            <div id="home-button">
+            <button id="logout-button" onClick={() => app.auth().signOut()}>Sign Out</button> 
+            </div>
+            </>
             <GlobalProvider>
                 <div className="container">  
                     <Balance/>
