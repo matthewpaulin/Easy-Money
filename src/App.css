@@ -58,6 +58,51 @@ h4 {
   border-right: 1px solid #dedede;
 }
 
+.accounts-container {
+  background-color: #fff;
+  box-shadow: var(--box-shadow);
+  padding: 15px;
+  margin: 20px 0;
+}
+
+.accounts-container  h2 {
+  margin: 0;
+  text-transform: none;
+}
+
+.accounts{
+  background-color: #fff;
+  box-shadow: var(--box-shadow);
+  margin: 5px;
+  padding: 5px;
+}
+
+.accounts span + span{
+  float: right;
+
+}
+
+
+.negative-balance{
+  color: black;
+}
+
+.positive-balance{
+  color: #2ecc71;
+}
+
+.addAccount {
+  background-color: #444;
+  color: white;
+  font-size: 1.3em;
+  float: right;
+  border-radius: 50%;
+}
+
+
+
+
+
 .money {
   font-size: 20px;
   letter-spacing: 1px;
