@@ -1,15 +1,9 @@
 import React, {useState} from 'react';
 import firebase from '../firebase';
 
-
 export const AddAccount = () => {
     const [name, setName] = useState('');
     const [balance, setBalance] = useState('');
-
-
-
-
-
     const submit = e => {
         e.preventDefault();
         if(name!==""){

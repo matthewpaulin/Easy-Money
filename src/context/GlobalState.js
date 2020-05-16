@@ -1,9 +1,9 @@
 import React, {createContext, useReducer} from 'react';
 import AppReducer from './AppReducer';
 const initialState = {
-    transactions: []
+    transactions: [],
+    user: "null"
 }
-
 
 export const GlobalContext = createContext(initialState);
 
@@ -24,10 +24,27 @@ export const GlobalProvider = ({ children }) => {
       })
     }
 
+    function login(user){
+      dispatch({
+        type: 'LOGIN',
+        payload: user
+      })
+      console.log(user);
+    }
+
+    function logout(user){
+      dispatch({
+        type: 'LOGOUT',
+        payload: user
+      })
+    }
+
     return (<GlobalContext.Provider value={{
         transactions: state.transactions,
         delTrans,
-        addTrans
+        addTrans,
+        login,
+        logout
       }}>
         {children}
       </GlobalContext.Provider>);
