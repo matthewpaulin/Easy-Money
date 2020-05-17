@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
 
 export const Header = () => {
     return (
-        <h2>
-            Budget App
-        </h2>
+        <>
+            <img id="logo" src={process.env.PUBLIC_URL + '/logo.png'}  alt="Logo" />
+        </>
     )
 }
