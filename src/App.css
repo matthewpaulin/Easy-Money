@@ -258,7 +258,7 @@ input[type='number'] {
 }
 
 .glow-on-hover:active {
-  color: #000
+  color: white;
 }
 
 .glow-on-hover:active:after {
@@ -321,10 +321,8 @@ input[type='number'] {
   position: relative;
   top: 5%;
   right: 5%;
-
   border: 0;
   background: none;
-  /* margin: 0; */
   margin: 20px auto;
   text-align: center;
   border: 2px solid #ccc;
