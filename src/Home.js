@@ -21,16 +21,17 @@ export const Home = () => {
             </div>
             </>
 
-            <GlobalProvider>
+            
                 <div className="container">  
                     <Balance/>
-                    <Accounts/>
+                    <GlobalProvider>
+                        <Accounts/>
+                    </GlobalProvider>
                     <span id="add-account">
                         <AddAccount/>
                     </span>
                     <Income/>
                 </div> 
-            </GlobalProvider> 
         </div>
     )
 }

@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useContext} from 'react';
-import {GlobalContext} from '../context/GlobalState';
 import firebase from '../firebase';
 import {Link} from 'react-router-dom';
+import { GlobalContext } from '../context/GlobalState';
 function AcctList(){
     const [accounts, setAccounts] = useState([]);
 
@@ -24,15 +24,20 @@ function AcctList(){
 export const Accounts = () => {
     const accounts = AcctList();
     const {setAcc} = useContext(GlobalContext);
+    const {currentAcc} = useContext(GlobalContext);
     return (
         <div className="accounts-container">
             <h2>Accounts</h2>
             {accounts.map((account) =>
-                <div key={account.id} className="accounts" onClick ={() => {setAcc(account.id)}}>
+                <div key={account.id} className="accounts" >  
                     <div id="account">
                         <div id="account-name">
-                            <Link to="/account" id="transaction-link" >   {account.title}   </Link>
-                            
+                            <Link to={{
+                                pathname:"/account",
+                                currentAcc: account.id==undefined ? currentAcc : account.id
+                            }} id="transaction-link" onClick={() => {
+                                setAcc(account.title)
+                            }}>   {account.title}   </Link>
                         </div>
                         <div id="account-value">
                             <span className={account.value <= 0 ? 'negative-balance' : 'positive-balance'}>${account.value}</span>

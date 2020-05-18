@@ -7,10 +7,11 @@ export const AddAccount = () => {
     const submit = e => {
         e.preventDefault();
         if(name!==""){
+            const balanceNum = balance !== "" ? parseFloat(balance) : 0;
             firebase.firestore().collection('accounts').add({
                 title: name,
-                value: balance !== "" ? parseFloat(balance) : 0,
-                transactions: [],
+                value: balanceNum,
+                transactions: [{"Initial Balance" : balanceNum }],
                 author: firebase.auth().currentUser.uid
             }).then(() => {
                 setName('');
