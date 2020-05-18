@@ -12,7 +12,12 @@ export default(state, action) =>{
                 ...state,
                 transactions: [action.payload,...state.transactions]
             }
-            
+        
+        case 'SET_ACCOUNT': 
+            return{
+                ...state,
+                currentAcc: action.payload
+            }
         default:
             return state;
     }

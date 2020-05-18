@@ -1,9 +1,9 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
+import {GlobalContext} from '../context/GlobalState';
 import firebase from '../firebase';
-
+import {Link} from 'react-router-dom';
 function AcctList(){
     const [accounts, setAccounts] = useState([]);
-
 
     // db.collection("stories").where("author", "==", user.uid).get();
 
@@ -23,14 +23,16 @@ function AcctList(){
 
 export const Accounts = () => {
     const accounts = AcctList();
+    const {setAcc} = useContext(GlobalContext);
     return (
         <div className="accounts-container">
             <h2>Accounts</h2>
             {accounts.map((account) =>
-                <div key={account.id} className="accounts">
+                <div key={account.id} className="accounts" onClick ={() => {setAcc(account.id)}}>
                     <div id="account">
                         <div id="account-name">
-                            {account.title}
+                            <Link to="/account" id="transaction-link" >   {account.title}   </Link>
+                            
                         </div>
                         <div id="account-value">
                             <span className={account.value <= 0 ? 'negative-balance' : 'positive-balance'}>${account.value}</span>

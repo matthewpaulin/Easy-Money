@@ -2,6 +2,7 @@ import React, {createContext, useReducer} from 'react';
 import AppReducer from './AppReducer';
 const initialState = {
     transactions: [],
+    currentAcc: ""
 }
 
 export const GlobalContext = createContext(initialState);
@@ -23,10 +24,19 @@ export const GlobalProvider = ({ children }) => {
       })
     }
     
+    function setAcc(account){
+      console.log(account);
+      dispatch({
+        type: 'SET_ACCOUNT',
+        payload: account
+      })
+    }
     return (<GlobalContext.Provider value={{
         transactions: state.transactions,
+        currentAcc: state.currentAcc,
         delTrans,
         addTrans,
+        setAcc
       }}>
         {children}
       </GlobalContext.Provider>);

@@ -1,18 +1,17 @@
-import React, { Component, useContext } from 'react';
+import React from 'react';
 import {Accounts} from './components/Accounts';
 import {AddAccount} from './components/AddAccount';
 import {Header} from './components/Header';
 import {Balance} from './components/Balance';
 import {Income} from './components/Income';
-import {Transactions} from './components/Transactions';
-import {NewTrans} from './components/NewTrans';
 import app from './firebase';
-import {GlobalProvider, GlobalContext} from './context/GlobalState';
+import {GlobalProvider} from './context/GlobalState';
 
 export const Home = () => {
     return (
         <div>
             <Header/>
+
             <>
             <div id="home-text"> 
                 <h1>Home</h1>
@@ -21,6 +20,7 @@ export const Home = () => {
             <button id="logout-button" onClick={() => app.auth().signOut()}>Sign Out</button> 
             </div>
             </>
+
             <GlobalProvider>
                 <div className="container">  
                     <Balance/>
@@ -29,8 +29,6 @@ export const Home = () => {
                         <AddAccount/>
                     </span>
                     <Income/>
-          {/* <Transactions/>
-          <NewTrans/> */}
                 </div> 
             </GlobalProvider> 
         </div>

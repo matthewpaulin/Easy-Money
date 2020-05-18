@@ -353,3 +353,26 @@ input[type='number'] {
   text-align: center;
   display: block;
 }
+
+#transaction-link{
+  color: black;
+  text-decoration: none;
+  text-align: left;
+  padding: 5px 100% 5px 0;
+}
+#transaction-link:hover{
+  text-decoration: underline;
+  text-decoration-color: #3c94e7;
+}
+
+#home-link{
+  color: white;
+  text-decoration: none;
+  text-align: left;
+  padding: 10px 20px;
+  background-color: #444;
+  border-radius: 40%;
+}
+#home-link:hover{
+  background-color: black;
+}
