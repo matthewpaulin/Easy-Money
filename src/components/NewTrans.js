@@ -17,11 +17,12 @@ export const NewTrans = () => {
             tName: text,
             tVal: +amnt
         }
-        // addTrans(newTrans);//
         firebase.firestore().collection('accounts').doc(currentAcc).update({
             transactions: firebase.firestore.FieldValue.arrayUnion(newTrans),
             value: firebase.firestore.FieldValue.increment(newTrans.tVal)
         });
+        setAmnt("");
+        setText("");
     }
     return (
         <div>

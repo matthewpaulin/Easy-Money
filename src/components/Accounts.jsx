@@ -1,6 +1,5 @@
 import React, {useContext} from 'react';
 import firebase from '../firebase';
-import {Link} from 'react-router-dom';
 import { GlobalContext } from '../context/GlobalState';
 import {AcctList} from './AcctList';
 
