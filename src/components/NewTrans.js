@@ -6,7 +6,7 @@ import firebase from '../firebase';
 
 export const NewTrans = () => {
     const [text, setText] = useState('');
-    const [amnt, setAmnt] = useState(0);
+    const [amnt, setAmnt] = useState('');
     const {currentAcc} = useContext(GlobalContext);
 
     const submit = e => {
@@ -21,8 +21,8 @@ export const NewTrans = () => {
             transactions: firebase.firestore.FieldValue.arrayUnion(newTrans),
             value: firebase.firestore.FieldValue.increment(newTrans.tVal)
         });
-        setAmnt("");
-        setText("");
+        setAmnt('');
+        setText('');
     }
     return (
         <div>
@@ -31,7 +31,7 @@ export const NewTrans = () => {
 
                 <div className="form-control">
                     <label htmlFor="text">Description</label>
-                    <input type="text" value = {text} onChange={(e) => setText(e.target.value)} placeholder="Enter text..." />
+                    <input type="text" value = {text} onChange={(e) => setText(e.target.value)} placeholder="Enter transaction description..." />
                 </div>
 
                 <div className="form-control">

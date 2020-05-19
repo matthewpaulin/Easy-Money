@@ -24,7 +24,7 @@ function AcctData(id){
                     setAccount(newAccount);
                 }
             })
-    }, []);
+    }, [id, isMountedRef]);
     
     return account;
 }

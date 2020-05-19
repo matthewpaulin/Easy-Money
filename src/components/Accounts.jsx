@@ -26,7 +26,7 @@ const AcctList = () => {
                     setAccounts(newAccount)
                 }
             })
-    }, []);
+    }, [isMountedRef]);
 
     return accounts;
 }
