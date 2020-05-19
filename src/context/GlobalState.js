@@ -11,7 +11,6 @@ export const GlobalProvider = ({ children }) => {
     const [state, dispatch] = useReducer(AppReducer, initialState);
 
     function setAcc(account){
-      console.log(account);
       dispatch({
         type: 'SET_ACCOUNT',
         payload: account

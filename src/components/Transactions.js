@@ -10,7 +10,6 @@ function AcctData(id){
         firebase.firestore().collection('accounts').doc(id)
             .onSnapshot((snapshot)=>{
                 const newAccount = snapshot.get("transactions")
-                    
                 setAccount(newAccount);
             })
     }, []);

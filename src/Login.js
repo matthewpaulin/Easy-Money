@@ -9,7 +9,6 @@ export const Login = () =>
     const {user} = useContext(AuthContext);
 
     if(user){
-        console.log(user);
         return <Redirect to="/"/>;
     }
 

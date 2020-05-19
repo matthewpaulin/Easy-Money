@@ -14,7 +14,8 @@ export const Transaction = ({ transaction }) => {
                 <span>{lparen}${Math.abs(transaction.tVal)}{rparen}</span></span>
              <button onClick = {() => 
                 firebase.firestore().collection('accounts').doc(currentAcc).update({
-                    transactions: firebase.firestore.FieldValue.arrayRemove(transaction),
+                    value: firebase.firestore.FieldValue.increment(-transaction.tVal),
+                    transactions: firebase.firestore.FieldValue.arrayRemove(transaction)
                 })
             }
              className= "delete-btn">x</button>

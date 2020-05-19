@@ -19,13 +19,6 @@ export const Accounts = () => {
                                 setDisplay("Account");
                             }}>
                             {account.title}
-                            {/* <Link to={{
-                                pathname:"/account",
-                                currentAcc: account.id === undefined ? currentAcc : account.id
-                            }} id="transaction-link" onClick={() => {
-                                setAcc(account.title)
-                            }}>   {account.title}   </Link> */}
-
                         </div>
                         <div id="account-value">
                             <span className={account.value <= 0 ? 'negative-balance' : 'positive-balance'}>${account.value}</span>
