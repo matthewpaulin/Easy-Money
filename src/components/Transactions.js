@@ -1,44 +1,40 @@
-import React, {useContext, useEffect, useState} from 'react'
+import React, {useEffect, useState} from 'react';
 import {Transaction} from './Transaction';
-import {GlobalContext} from '../context/GlobalState';
-import firebase from '../firebase'
+import firebase from '../firebase';
 
-function AccountData(id){
-    //.where("author", "==", firebase.auth().currentUser.uid)
-    let account;
-    firebase.firestore().collection('accounts')
-    .where("id", "==", id)
-    .onSnapshot((snapshot)=>{
-        account = snapshot.docs.map((doc) => ({
-            id: doc.id,
-            ...doc.data()
-        }))   
-    });
-    console.log(account.transactions);
+function AcctData(id){
+    const [account, setAccount] = useState([]);
+
+    useEffect(() =>{
+        firebase.firestore().collection('accounts').doc(id)
+            .onSnapshot((snapshot)=>{
+                const newAccount = snapshot.get("transactions")
+                    
+                setAccount(newAccount);
+            })
+    }, []);
+    
     return account;
 }
 
 
 
 export const Transactions = (props) => {
-    //const {transactions} = useContext(GlobalContext);
+    const currentAcc = props.account !== undefined ? props.account : "a";
+    const data = AcctData(currentAcc)
+    const transactions = data !== undefined ? data : [];
+    ///remove
 
-    const currentAcc = props.account;
-    const {account} = AccountData(currentAcc)
-    console.log(currentAcc);
+    console.log(transactions.length)
+
 
     return (
         <div>
-            {console.log(currentAcc)}
             <h3>History</h3>
             <ul className="list">
-                {/* {transactions.map(transaction => (
-                    // <Transaction key={transaction.id} transaction={transaction}/>
-                    <Transaction transaction={transaction}/>
-                ))} */}
-                {account.transactions.map(transaction => (
-                    <Transaction transaction/>
-                ))}
+                {transactions.map(transaction => (
+                    <Transaction account={currentAcc} key={transaction.tID} transaction={transaction}/>
+                ))}              
             </ul>
         </div>
     )

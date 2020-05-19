@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import firebase from '../firebase';
+import uuid from 'react-uuid';
 
 export const AddAccount = () => {
     const [name, setName] = useState('');
@@ -11,7 +12,11 @@ export const AddAccount = () => {
             firebase.firestore().collection('accounts').add({
                 title: name,
                 value: balanceNum,
-                transactions: [{"Initial Balance" : balanceNum }],
+                transactions: [{
+                    tName: "Initial Balance", 
+                    tVal: balanceNum,
+                    tID: uuid()
+                }],
                 author: firebase.auth().currentUser.uid
             }).then(() => {
                 setName('');

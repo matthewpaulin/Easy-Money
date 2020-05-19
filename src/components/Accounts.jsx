@@ -23,6 +23,7 @@ function AcctList(){
 
 export const Accounts = () => {
     const accounts = AcctList();
+    console.log(accounts)
     const {setAcc} = useContext(GlobalContext);
     const {currentAcc} = useContext(GlobalContext);
     return (
@@ -34,7 +35,7 @@ export const Accounts = () => {
                         <div id="account-name">
                             <Link to={{
                                 pathname:"/account",
-                                currentAcc: account.id==undefined ? currentAcc : account.id
+                                currentAcc: account.id === undefined ? currentAcc : account.id
                             }} id="transaction-link" onClick={() => {
                                 setAcc(account.title)
                             }}>   {account.title}   </Link>
