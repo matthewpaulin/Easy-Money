@@ -1,37 +1,52 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {Accounts} from './components/Accounts';
 import {AddAccount} from './components/AddAccount';
 import {Header} from './components/Header';
 import {Balance} from './components/Balance';
+import {Account} from './components/Account';
 import {Income} from './components/Income';
 import app from './firebase';
-import {GlobalProvider} from './context/GlobalState';
+import {GlobalContext} from './context/GlobalState';
 
 export const Home = () => {
-    return (
-        <div>
-            <Header/>
+    const {display} = useContext(GlobalContext);
 
-            <>
-            <div id="home-text"> 
-                <h1>Home</h1>
-            </div>
-            <div id="home-button">
-            <button id="logout-button" onClick={() => app.auth().signOut()}>Sign Out</button> 
-            </div>
-            </>
+    switch(display) {
+        case "Account":
+            return(
+                <Account/>
+        )
 
-            
-                <div className="container">  
-                    <Balance/>
-                    <GlobalProvider>
-                        <Accounts/>
-                    </GlobalProvider>
-                    <span id="add-account">
-                        <AddAccount/>
-                    </span>
-                    <Income/>
-                </div> 
-        </div>
-    )
+
+        case "Budget":
+            return(
+                <>
+                </>
+        )
+
+        default:
+            return(
+                <div>
+                    <Header/>
+
+                    <>
+                        <div id="home-text"> 
+                            <h1>Home</h1>
+                        </div>
+                        <div id="home-button">
+                            <button id="logout-button" onClick={() => app.auth().signOut()}>Sign Out</button> 
+                        </div>
+                    </>
+                    
+                        <div className="container">  
+                            <Balance/>
+                            <Accounts/>
+                            <span id="add-account">
+                                <AddAccount/>
+                            </span>
+                            {/* <Income/> */}
+                        </div> 
+                </div>
+        )
+    }
 }

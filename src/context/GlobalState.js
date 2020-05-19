@@ -1,8 +1,8 @@
 import React, {createContext, useReducer} from 'react';
 import AppReducer from './AppReducer';
 const initialState = {
-    transactions: [],
-    currentAcc: ""
+    currentAcc: "",
+    display: ""
 }
 
 export const GlobalContext = createContext(initialState);
@@ -10,20 +10,6 @@ export const GlobalContext = createContext(initialState);
 export const GlobalProvider = ({ children }) => {
     const [state, dispatch] = useReducer(AppReducer, initialState);
 
-    function delTrans(id){
-      dispatch({
-        type: 'DELETE_TRANSACTION',
-        payload: id
-      })
-    }
-
-    function addTrans(transaction){
-      dispatch({
-        type: 'ADD_TRANSACTION',
-        payload: transaction
-      })
-    }
-    
     function setAcc(account){
       console.log(account);
       dispatch({
@@ -31,13 +17,21 @@ export const GlobalProvider = ({ children }) => {
         payload: account
       })
     }
+
+    function setDisplay(name){
+      dispatch({
+        type: 'SET_DISPLAY',
+        payload: name
+      })
+    }
+
     return (<GlobalContext.Provider value={{
-        transactions: state.transactions,
         currentAcc: state.currentAcc,
-        delTrans,
-        addTrans,
-        setAcc
+        display: state.display,
+        setAcc,
+        setDisplay
       }}>
         {children}
-      </GlobalContext.Provider>);
+      </GlobalContext.Provider>
+    );
 }
