@@ -40,10 +40,7 @@ export const Home = () => {
                     
                         <div className="container">  
                             <Balance/>
-                            <Accounts/>
-                            <span id="add-account">
-                                <AddAccount/>
-                            </span>
+                            {display==="addAccount" ? <AddAccount/> : <Accounts/>}
                             {/* <Income/> */}
                         </div> 
                 </div>

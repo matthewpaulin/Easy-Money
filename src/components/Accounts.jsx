@@ -60,7 +60,7 @@ export const Accounts = () => {
                 </div>
             )}
             <button className="addAccount" onClick={()=>
-                document.getElementById("add-account").style.display='block'
+                setDisplay("addAccount")
             }>+</button> 
         </div>
     )

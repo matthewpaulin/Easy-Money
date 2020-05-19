@@ -122,10 +122,6 @@ h4 {
   background: #e74c3c;
 }
 
-#add-account{
-  display: none;
-}
-
 .negative-balance{
   color: black;
 }
@@ -362,7 +358,7 @@ input[type='number'] {
   display: block;
 }
 
-#home-link{
+#home-link{ /* EDIT THIS */
   color: white;
   text-decoration: none;
   text-align: left;
@@ -370,6 +366,76 @@ input[type='number'] {
   background-color: #444;
   border-radius: 40%;
 }
-#home-link:hover{
+#home-link:hover{ /* EDIT THIS */
   background-color: black;
+}
+
+.account-balance{
+  text-align: center;
+  margin: 10px;
+}
+
+#transaction-container > h3{
+  margin-top: 5px;
+}
+
+.form-box{
+  background-color: #444444; /*temporary*/
+  color: white;
+}
+
+.form-label{
+  width: 100%;
+  text-align: center;
+}
+
+.form-box input[type="text"], .form-box input[type="number"]{
+  width: 80%;
+  border: 2px solid #446cb3;
+  background: none;
+  margin: 15px auto;
+  text-align: center;
+  padding: 14px 10px;
+  outline: none;
+  color: white;
+  border-radius: 50%;
+  transition: 0.25s;
+}
+
+.form-box input[type="text"]:focus, .form-box input[type="number"]:focus{
+  width: 100%;
+  border: 2px solid #4d13d1;
+}
+
+.form-submit{
+  width: 50%;
+  border: 2px solid #446cb3;
+  background: none;
+  color: white;
+  padding: 10px 10px;
+  margin: 5% 25%;
+  text-align: center;
+  outline: none;
+}
+.form-submit:hover{
+  background-color: #446cb3;
+}
+
+#account-list > div{
+  display: inline-block;
+  width: 50%;
+}
+#account-list >div >button{
+  box-sizing: border-box;
+  background: none;
+  border: 2px solid #f64747;
+  color: white;
+  text-align: center;
+  margin-left: 85%;
+  width: 15%;
+  outline: none;
+}
+#account-list >div >button:hover{
+  background: #f64747;
+  border: 2px solid #f64747;
 }

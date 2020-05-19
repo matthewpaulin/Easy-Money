@@ -1,7 +1,6 @@
-import React, {useEffect, useState, useContext, useRef} from 'react';
-import {Transaction} from './Transaction';
-import firebase from '../firebase';
+import React, {useState, useEffect, useRef,  useContext} from 'react';
 import {GlobalContext} from '../context/GlobalState';
+import firebase from '../firebase';
 
 function useIsMountedRef(){
     const isMountedRef = useRef(null);
@@ -29,20 +28,17 @@ function AcctData(id){
     return account;
 }
 
-
-
-export const Transactions = () => {
+export const AccountBalance = () => {
     const {currentAcc} = useContext(GlobalContext);
     const transactions = AcctData(currentAcc)
+    const total = transactions.map(t => t.tVal)
+        .reduce((i, item) => (i +=item), 0)
+        .toFixed(2);
 
     return (
-        <div id="transaction-container">
-            <h3>History</h3>
-            <ul className="list">
-                {transactions.map(transaction => (
-                    <Transaction key={transaction.tID} transaction={transaction}/>
-                ))}              
-            </ul>
+        <div className="account-balance">
+            <h4>Account Balance</h4>
+            <h1>${total}</h1>
         </div>
     )
 }

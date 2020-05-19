@@ -1,10 +1,11 @@
-import React, {useContext} from 'react'
+import React, {useContext} from 'react';
 import {Transactions} from './Transactions';
 import {NewTrans} from './NewTrans';
+import {AccountBalance} from './AccountBalance';
 import {GlobalContext} from '../context/GlobalState';
 
 export const Account = () => {
-    const {currentAcc, setDisplay, setAcc} = useContext(GlobalContext);
+    const {setDisplay, setAcc} = useContext(GlobalContext);
     return (
         <div className="container">
             <button id="home-link" onClick = {() => {
@@ -13,8 +14,9 @@ export const Account = () => {
                 }}>
                 Back
             </button>
-            <Transactions account = {currentAcc} />
-            <NewTrans account = {currentAcc}/>
+            <AccountBalance/>
+            <Transactions/>
+            <NewTrans/>
         </div>
     )
 }
