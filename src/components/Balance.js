@@ -1,5 +1,33 @@
-import React from 'react';
-import {AcctList} from './AcctList';
+import React, {useState, useEffect, useRef} from 'react';
+import firebase from '../firebase';
+
+function useIsMountedRef(){
+    const isMountedRef = useRef(null);
+    useEffect(() => {
+      isMountedRef.current = true;
+      return () => isMountedRef.current = false;
+    });
+    return isMountedRef;
+}
+
+const AcctList = () => {
+    const [accounts, setAccounts] = useState([]);
+    const isMountedRef = useIsMountedRef();
+    useEffect(() =>{
+        firebase.firestore().collection('accounts').where("author", "==", firebase.auth().currentUser.uid)
+            .onSnapshot((snapshot)=>{
+                const newAccount = snapshot.docs.map((doc) => ({
+                    id: doc.id,
+                    ...doc.data()
+                }))
+                if(isMountedRef.current){
+                    setAccounts(newAccount)
+                }
+            })
+    }, []);
+
+    return accounts;
+}
 
 export const Balance = () => {
     const accounts = AcctList();

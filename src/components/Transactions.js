@@ -1,16 +1,28 @@
-import React, {useEffect, useState, useContext} from 'react';
+import React, {useEffect, useState, useContext, useRef} from 'react';
 import {Transaction} from './Transaction';
 import firebase from '../firebase';
 import {GlobalContext} from '../context/GlobalState';
 
+function useIsMountedRef(){
+    const isMountedRef = useRef(null);
+    useEffect(() => {
+      isMountedRef.current = true;
+      return () => isMountedRef.current = false;
+    });
+    return isMountedRef;
+}
+
 function AcctData(id){
     const [account, setAccount] = useState([]);
+    const isMountedRef = useIsMountedRef();
 
     useEffect(() =>{
         firebase.firestore().collection('accounts').doc(id)
             .onSnapshot((snapshot)=>{
                 const newAccount = snapshot.get("transactions")
-                setAccount(newAccount);
+                if(isMountedRef.current){
+                    setAccount(newAccount);
+                }
             })
     }, []);
     
