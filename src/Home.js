@@ -41,7 +41,7 @@ export const Home = () => {
                         <div className="container">  
                             <Balance/>
                             {display==="addAccount" ? <AddAccount/> : <Accounts/>}
-                            {/* <Income/> */}
+                            <Income/>
                         </div> 
                 </div>
         )

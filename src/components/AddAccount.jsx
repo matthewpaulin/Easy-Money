@@ -19,7 +19,9 @@ export const AddAccount = () => {
                     tVal: balanceNum,
                     tID: uuid()
                 }],
-                author: firebase.auth().currentUser.uid
+                author: firebase.auth().currentUser.uid,
+                revenue: balanceNum>0 ? balanceNum : 0,
+                expenses: balanceNum<0 ? balanceNum : 0
             }).then(() => {
                 setName('');
                 setBalance('');

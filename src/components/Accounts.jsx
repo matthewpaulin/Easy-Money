@@ -55,7 +55,7 @@ export const Accounts = () => {
                         <button onClick = {() =>{
                             firebase.firestore().collection('accounts').doc(account.id).delete()}
                         }
-                        className= "del-acc-btn">x</button>
+                        className= "del-acc-btn">X</button>
                     </div>
                 </div>
             )}

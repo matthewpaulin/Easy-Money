@@ -21,8 +21,18 @@ export const NewTrans = () => {
         }
         firebase.firestore().collection('accounts').doc(currentAcc).update({
             transactions: firebase.firestore.FieldValue.arrayUnion(newTrans),
-            value: firebase.firestore.FieldValue.increment(newTrans.tVal)
+            value: firebase.firestore.FieldValue.increment(newTrans.tVal),
         });
+        if(newTrans.tVal>0){
+            firebase.firestore().collection('accounts').doc(currentAcc).update({
+                revenue: firebase.firestore.FieldValue.increment(newTrans.tVal)
+            })
+        }
+        else{
+            firebase.firestore().collection('accounts').doc(currentAcc).update({
+                expenses: firebase.firestore.FieldValue.increment(-newTrans.tVal)
+            })
+        }
         setAmnt('');
         setText('');
     }
