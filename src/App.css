@@ -478,3 +478,102 @@ button:focus {
   height: 1em;
   background-color: #ccc;
 }
+
+#color-picker{
+  padding: 10px 0px;
+  margin: auto;
+  width: 252px;
+}
+
+
+/************************************************************/
+.budgets-container {
+  width: 100%;
+  background-color: #333;
+  box-shadow: var(--box-shadow);
+  padding: 15px;
+  margin: 20px 0;
+}
+
+.budgets-container  h2 {
+  margin: 0;
+  text-transform: none;
+}
+
+.budgets{
+  background-color: #262727;
+  box-shadow: var(--box-shadow);
+  margin: 5px;
+  padding: 5px;
+  display: flex;
+}
+
+#budget{
+  display: inline-block;
+  width: 100%;
+}
+
+
+
+#budget-name{
+  display: inline-block;
+  width: 50%;
+  overflow-wrap: break-word;
+  color: white;
+  text-decoration: none;
+  text-align: left;
+  margin-bottom: 5px;
+}
+
+#budget-amount{
+  text-align: right;
+  margin-left: auto;
+  display: inline-block;
+  width: 50%;
+  overflow-wrap: break-word;
+}
+
+#delete-account{
+  margin: 0% 1%;
+  text-align: right;
+  width: 8%;
+}
+
+.edit-acc-btn{
+  display: block;
+  cursor: pointer;
+  background-color: #444;
+  color: white;
+  border: 1px solid transparent;
+  margin: 2px 0 0 auto;
+}
+
+.edit-acc-btn:hover{
+  border: 1px solid #444;
+  background: #2c82c9;
+}
+
+#budget-progress{
+  position: relative;
+  width: 100%;
+  display: block;
+  border-radius: 0 10px 10px 0;
+}
+
+#budget-percentage{
+  color: black;
+  font-weight: bold;
+  text-align: center;
+  display: block;
+}
+
+
+#budget-percentage > span {
+  text-align: center;
+}
+
+#progress-bar {
+  width: 100%;
+  background: #ccc;
+  position: relative;
+}

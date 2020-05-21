@@ -7,10 +7,12 @@ import {Account} from './components/Account';
 import {Income} from './components/Income';
 import app from './firebase';
 import {GlobalContext} from './context/GlobalState';
+import {AddBudget} from './components/AddBudget';
+import {Budgets} from './components/Budgets';
 
 export const Home = () => {
     const {display} = useContext(GlobalContext);
-
+    
     switch(display) {
         case "Account":
             return(
@@ -42,6 +44,7 @@ export const Home = () => {
                             <Balance/>
                             {display==="addAccount" ? <AddAccount/> : <Accounts/>}
                             <Income/>
+                            {display==="addBudget" ? <AddBudget/> : <Budgets/>}
                         </div> 
                 </div>
         )
