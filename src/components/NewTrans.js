@@ -92,13 +92,14 @@ export const NewTrans = () => {
                     <input type="text" value = {text} className="form-entry" onChange={(e) => setText(e.target.value)} placeholder="Enter transaction description..." />
                     <label htmlFor="amount" className="form-label">Amount (Negative or Positive)</label>
                     <input type="number" value = {amnt} className="form-entry"  onChange={(e) => setAmnt(e.target.value)} placeholder="Enter amount..." />
-                    <button className="form-submit">Add Transaction</button>
                     <div>
+                    <label htmlFor="text" className="form-label">Categories</label>
                     <select id="selectBudgets" multiple={true} name="selectBudgets" onChange={(e) => handleChange(e)} >
                         {budgetList.map((budget) =>
                             <option value={budget.id} key={budget.id}>{budget.name}</option>
                         )}
                     </select>
+                    <button className="form-submit">Add Transaction</button>
                     </div>
                 </div>
             </form>

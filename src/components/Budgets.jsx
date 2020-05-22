@@ -1,6 +1,8 @@
 import React, {useContext, useState, useEffect, useRef} from 'react';
 import firebase from '../firebase';
 import { GlobalContext } from '../context/GlobalState';
+import { FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faEdit} from '@fortawesome/free-solid-svg-icons';
 
 function useIsMountedRef(){
     const isMountedRef = useRef(null);
@@ -74,7 +76,9 @@ export const Budgets = () => {
                             setDisplay("editBudget");
                         }
                         }
-                        className= "edit-acc-btn">Edit</button>
+                        className= "edit-acc-btn">
+                            <FontAwesomeIcon icon={faEdit}/>
+                            </button>
                     </div>
                 </div>
             )}

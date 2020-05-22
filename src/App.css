@@ -232,8 +232,8 @@ button:focus {
   background-color: #e74c3c;
   border: 1px solid #e74c3c;
   color: white;
-  padding: 5px;
-  margin-left: auto;
+  padding: 3px;
+  margin-left: 3px;
 }
 
 .delete-btn:hover{
@@ -411,7 +411,7 @@ button:focus {
 .form-box input[type="text"], .form-box input[type="number"]{
   width: 80%;
   max-width: 400px;
-  border: 2px solid #446cb3;
+  border: 2px solid #446cb3; 
   background: none;
   margin: 5px auto;
   text-align: center;
@@ -575,4 +575,53 @@ button:focus {
   width: 100%;
   background: #ccc;
   position: relative;
+}
+
+.dropbtn{
+  border: none;
+  margin: 0 3px 0 0;
+  background: #446cb3;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #444;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content span{
+  float: none;
+  color: black;
+  padding: 0 5px;
+  text-decoration: none;
+  display: inline-block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+#selectBudgets{
+  outline: none;
+  display: block;
+  background: #b1b1b1;
+  margin-left: auto;
+  margin-right: auto;
+  width: 250px;
+  overflow-wrap: break-word;
+  overflow-y: scroll;
+}
+#selectBudgets option{
+  border-bottom: 1px solid #446cb3;
 }

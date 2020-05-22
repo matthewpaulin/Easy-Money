@@ -1,6 +1,36 @@
-import React, {useContext} from 'react'
+import React, {useContext, useEffect, useState, useRef} from 'react'
 import {GlobalContext} from '../context/GlobalState';
 import firebase from '../firebase';
+import { FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faCaretDown} from '@fortawesome/free-solid-svg-icons';
+
+function useIsMountedRef(){
+    const isMountedRef = useRef(null);
+    useEffect(() => {
+      isMountedRef.current = true;
+      return () => isMountedRef.current = false;
+    });
+    return isMountedRef;
+}
+
+function BudgetData(id){
+    const [budget, setBudget] = useState([]);
+    const isMountedRef = useIsMountedRef();
+
+    useEffect(() =>{
+        firebase.firestore().collection('budgets').doc(id)
+            .onSnapshot((snapshot)=>{
+                const newName = snapshot.get("name")
+                const newColor = snapshot.get("color")
+                if(isMountedRef.current){
+                    setBudget([newName, newColor]);
+                }
+            })
+    }, [id, isMountedRef]);
+    
+    return budget;
+}
+
 
 export const Transaction = ({ transaction }) => {
     const {currentAcc} = useContext(GlobalContext);
@@ -9,6 +39,18 @@ export const Transaction = ({ transaction }) => {
 
     return (
         <li className={transaction.tVal < 0 ? 'minus' : 'plus'}>
+            <div className="dropdown">
+                <button className="dropbtn"><FontAwesomeIcon icon={faCaretDown} />
+                    <i className="fa fa-caret-down"></i>
+                </button>
+                <div className="dropdown-content">
+                    {transaction.categories.map(c => (
+                        <span style={{"background": BudgetData(c)[1]}}key={c}>
+                            {BudgetData(c)[0]}
+                        </span>
+                    ))}
+                </div>
+            </div> 
             <span id="transaction-name">{transaction.tName}</span> 
             <span className={transaction.tVal < 0 ? 'money minus' : 'money plus'}>
                 <span>{lparen}${Math.abs(transaction.tVal)}{rparen}</span></span>
@@ -34,16 +76,6 @@ export const Transaction = ({ transaction }) => {
                 }
             }}
              className= "delete-btn">X</button>
-            <div class="dropdown">
-                <button class="dropbtn">Dropdown
-                    <i class="fa fa-caret-down"></i>
-                </button>
-                <div class="dropdown-content">
-                    <a href="#">Link 1</a>
-                    <a href="#">Link 2</a>
-                    <a href="#">Link 3</a>
-                </div>
-            </div> 
         </li>
     )
 }
