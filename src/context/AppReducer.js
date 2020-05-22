@@ -10,6 +10,11 @@ export default(state, action) =>{
                 ...state,
                 display: action.payload
             }
+        case 'SET_BUDGET': 
+            return{
+                ...state,
+                currentBudget: action.payload
+            }
         default:
             return state;
     }

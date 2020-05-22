@@ -9,6 +9,7 @@ import app from './firebase';
 import {GlobalContext} from './context/GlobalState';
 import {AddBudget} from './components/AddBudget';
 import {Budgets} from './components/Budgets';
+import {EditBudget} from './components/EditBudget';
 
 export const Home = () => {
     const {display} = useContext(GlobalContext);
@@ -44,7 +45,7 @@ export const Home = () => {
                             <Balance/>
                             {display==="addAccount" ? <AddAccount/> : <Accounts/>}
                             <Income/>
-                            {display==="addBudget" ? <AddBudget/> : <Budgets/>}
+                            {display==="addBudget" ? <AddBudget/> : display==="editBudget" ? <EditBudget/>: <Budgets/>}
                         </div> 
                 </div>
         )

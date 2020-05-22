@@ -472,6 +472,7 @@ button:focus {
  
 .list::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.527);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.527);;
 }
  
 .list::-webkit-scrollbar-thumb {
@@ -485,8 +486,6 @@ button:focus {
   width: 252px;
 }
 
-
-/************************************************************/
 .budgets-container {
   width: 100%;
   background-color: #333;
