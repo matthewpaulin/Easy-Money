@@ -33,6 +33,7 @@ function AcctData(id){
 
 export const Transactions = () => {
     const {currentAcc} = useContext(GlobalContext);
+    console.log(currentAcc)
     const transactions = AcctData(currentAcc)
 
     return (

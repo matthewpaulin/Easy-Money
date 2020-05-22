@@ -1,6 +1,5 @@
-import React, {useEffect, useState, useContext, useRef} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import firebase from '../firebase';
-import {GlobalContext} from '../context/GlobalState';
 
 function useIsMountedRef(){
     const isMountedRef = useRef(null);

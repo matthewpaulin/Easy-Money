@@ -34,18 +34,20 @@ const BudgetList = () => {
 export const Budgets = () => {
     const budgets = BudgetList();
     const {setDisplay} = useContext(GlobalContext);
+    const {setBudget} = useContext(GlobalContext);
+    const {currentBudget} = useContext(GlobalContext);/////
 
     return (
         <div className="budgets-container">
             <h2>Budgets</h2>
             {budgets.map((budget) =>
-                <div key={budget.id} className="budgets"  style={{"border-left": "3px solid "+budget.color}}>  
+                <div key={budget.id} className="budgets"  style={{"borderLeft": "3px solid "+budget.color}}>  
                     <div id="budget">
                         <div id="budget-name">
                             {budget.name}
                         </div>
                         <div id="budget-amount">
-                            <span>${budget.amount-budget.amountUsed} left</span>
+                            <span>${budget.amount>budget.amountUsed ? budget.amount-budget.amountUsed : 0} left</span>
                         </div>
                         <div id="progress-bar">
                             <div id="budget-progress" style={{
@@ -64,7 +66,14 @@ export const Budgets = () => {
                         }
                         className= "del-acc-btn">X</button>
                         <button onClick = {() =>{
-                            firebase.firestore().collection('budgets').doc(budget.id).delete()}
+                            setBudget({
+                                name: budget.name,
+                                id: budget.id,
+                                color: budget.color,
+                                amount: budget.amount                  
+                            });
+                            setDisplay("editBudget");
+                        }
                         }
                         className= "edit-acc-btn">Edit</button>
                     </div>
