@@ -33,7 +33,6 @@ function AcctData(id){
 
 export const Transactions = () => {
     const {currentAcc} = useContext(GlobalContext);
-    console.log(currentAcc)
     const transactions = AcctData(currentAcc)
 
     return (
@@ -43,7 +42,7 @@ export const Transactions = () => {
                 {transactions.map(transaction => (
                     <Transaction key={transaction.tID} transaction={transaction}/>
                 ))}              
-            </ul>
+            </ul> 
         </div>
     )
 }

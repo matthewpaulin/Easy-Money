@@ -17,7 +17,9 @@ export const AddAccount = () => {
                 transactions: [{
                     tName: "Initial Balance", 
                     tVal: balanceNum,
-                    tID: uuid()
+                    tID: uuid(),
+                    categories: [],
+                    time: firebase.firestore.Timestamp.now() 
                 }],
                 author: firebase.auth().currentUser.uid,
                 revenue: balanceNum>0 ? balanceNum : 0,

@@ -1,13 +1,52 @@
-import React, {useState, useContext} from 'react'
+import React, {useState, useContext, useRef, useEffect} from 'react'
 import {GlobalContext} from '../context/GlobalState';
 import uuid from 'react-uuid';
 import firebase from '../firebase';
 
+function useIsMountedRef(){
+    const isMountedRef = useRef(null);
+    useEffect(() => {
+      isMountedRef.current = true;
+      return () => isMountedRef.current = false;
+    });
+    return isMountedRef;
+}
+
+const BudgetList = () => {
+    const [budgets, setBudgets] = useState([]);
+    const isMountedRef = useIsMountedRef();
+
+    useEffect(() =>{
+        firebase.firestore().collection('budgets').where("author", "==", firebase.auth().currentUser.uid)
+            .onSnapshot((snapshot)=>{
+                const newBudget = snapshot.docs.map((doc) => ({
+                    id: doc.id,
+                    ...doc.data()
+                }))
+                if(isMountedRef.current){
+                    setBudgets(newBudget);
+                }
+            })
+    }, [isMountedRef]);
+
+    return budgets;
+}
 
 export const NewTrans = () => {
     const [text, setText] = useState('');
     const [amnt, setAmnt] = useState('');
     const {currentAcc} = useContext(GlobalContext);
+    const budgetList = BudgetList();
+    const [budgets, setBudgets] = useState([]);
+
+    const handleChange = e =>{
+        setBudgets([]);
+        for (let i = 0, l = e.target.options.length; i < l; i++) {
+            if (e.target.options[i].selected) {
+                setBudgets([...budgets, e.target.options[i].value]);
+            }
+          }
+    }
 
     const submit = e => {
         e.preventDefault();
@@ -17,7 +56,9 @@ export const NewTrans = () => {
         const newTrans = {
             tID: uuid(),
             tName: text,
-            tVal: parseFloat((+amnt).toFixed(2))
+            tVal: parseFloat((+amnt).toFixed(2)),
+            categories: budgets,
+            time: firebase.firestore.Timestamp.now() 
         }
         firebase.firestore().collection('accounts').doc(currentAcc).update({
             transactions: firebase.firestore.FieldValue.arrayUnion(newTrans),
@@ -33,8 +74,14 @@ export const NewTrans = () => {
                 expenses: firebase.firestore.FieldValue.increment(-newTrans.tVal)
             })
         }
+        for (let i = 0; i < budgets.length; i++) {
+            firebase.firestore().collection('budgets').doc(budgets[i]).update({
+                amountUsed: firebase.firestore.FieldValue.increment(newTrans.tVal)
+            });
+        }
         setAmnt('');
         setText('');
+        setBudgets([]);
     }
     return (
         <div>
@@ -46,6 +93,13 @@ export const NewTrans = () => {
                     <label htmlFor="amount" className="form-label">Amount (Negative or Positive)</label>
                     <input type="number" value = {amnt} className="form-entry"  onChange={(e) => setAmnt(e.target.value)} placeholder="Enter amount..." />
                     <button className="form-submit">Add Transaction</button>
+                    <div>
+                    <select id="selectBudgets" multiple={true} name="selectBudgets" onChange={(e) => handleChange(e)} >
+                        {budgetList.map((budget) =>
+                            <option value={budget.id} key={budget.id}>{budget.name}</option>
+                        )}
+                    </select>
+                    </div>
                 </div>
             </form>
         </div>

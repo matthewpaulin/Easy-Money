@@ -35,8 +35,7 @@ export const Budgets = () => {
     const budgets = BudgetList();
     const {setDisplay} = useContext(GlobalContext);
     const {setBudget} = useContext(GlobalContext);
-    const {currentBudget} = useContext(GlobalContext);/////
-
+    
     return (
         <div className="budgets-container">
             <h2>Budgets</h2>

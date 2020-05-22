@@ -490,7 +490,7 @@ button:focus {
   width: 100%;
   background-color: #333;
   box-shadow: var(--box-shadow);
-  padding: 15px;
+  padding: 15px 10px;
   margin: 20px 0;
 }
 
@@ -502,7 +502,7 @@ button:focus {
 .budgets{
   background-color: #262727;
   box-shadow: var(--box-shadow);
-  margin: 5px;
+  margin: 5px 0;
   padding: 5px;
   display: flex;
 }
