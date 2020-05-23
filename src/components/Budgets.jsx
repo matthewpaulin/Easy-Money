@@ -4,43 +4,72 @@ import { GlobalContext } from '../context/GlobalState';
 import { FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faEdit} from '@fortawesome/free-solid-svg-icons';
 
-function useIsMountedRef(){
-    const isMountedRef = useRef(null);
-    useEffect(() => {
-      isMountedRef.current = true;
-      return () => isMountedRef.current = false;
-    });
-    return isMountedRef;
+const SORT_OPS = {
+    "DATE_ASC": {column: 'date', direction: 'asc'},
+    "DATE_DESC": {column: 'date', direction: 'desc'},
+    "NAME_ASC": {column: 'name', direction: 'asc'},
+    "NAME_DESC": {column: 'name', direction: 'desc'},
+    "AMOUNT_ASC": {column: 'amount', direction: 'asc'},
+    "AMOUNT_DESC": {column: 'amount', direction: 'desc'}
 }
 
-const BudgetList = () => {
+// function useIsMountedRef(){
+//     const isMountedRef = useRef(null);
+//     useEffect(() => {
+//       isMountedRef.current = true;
+//       return () => isMountedRef.current = false;
+//     });
+//     return isMountedRef;
+// }
+
+const BudgetList = (sort="NAME_ASC") => {
     const [budgets, setBudgets] = useState([]);
-    const isMountedRef = useIsMountedRef();
+    // const isMountedRef = useIsMountedRef();
 
     useEffect(() =>{
+        const unsub = 
         firebase.firestore().collection('budgets').where("author", "==", firebase.auth().currentUser.uid)
+            .orderBy(SORT_OPS[sort].column, SORT_OPS[sort].direction)
             .onSnapshot((snapshot)=>{
                 const newBudget = snapshot.docs.map((doc) => ({
                     id: doc.id,
                     ...doc.data()
                 }))
-                if(isMountedRef.current){
+                // if(isMountedRef.current){
                     setBudgets(newBudget);
-                }
+                // }
             })
-    }, [isMountedRef]);
+        return () => unsub();
+    }, [sort]);
 
     return budgets;
 }
 
 export const Budgets = () => {
-    const budgets = BudgetList();
     const {setDisplay} = useContext(GlobalContext);
     const {setBudget} = useContext(GlobalContext);
+    const [sortBy, setSortBy] = useState('NAME_ASC');
+    const budgets = BudgetList(sortBy);
     
     return (
         <div className="budgets-container">
-            <h2>Budgets</h2>
+            
+            <div className="sort">
+                <h2>Budgets</h2>
+                <div>
+                    <label>Sort By:</label>{" "}
+                    <select value={sortBy} onChange={e => setSortBy(e.currentTarget.value)}> 
+                        {/* <option value='DATE_DESC'> Date (newest first)</option>
+                        <option value='DATE_ASC'> Date (oldest first)</option> */}
+                        <option disabled>--------</option>
+                        <option value='NAME_ASC'> Name (A - Z)</option>
+                        <option value='NAME_DESC'> Name (Z - A)</option>
+                        <option disabled>--------</option>
+                        <option value='AMOUNT_DESC'> Amount ($$$-$)</option>
+                        <option value='AMOUNT_ASC'> Amount ($-$$$)</option>
+                    </select>
+                </div>
+            </div>
             {budgets.map((budget) =>
                 <div key={budget.id} className="budgets"  style={{"borderLeft": "3px solid "+budget.color}}>  
                     <div id="budget">

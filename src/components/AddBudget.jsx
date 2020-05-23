@@ -3,6 +3,7 @@ import firebase from '../firebase';
 import { CirclePicker} from 'react-color';
 import {GlobalContext} from '../context/GlobalState';
 
+
 export const AddBudget = () => {
     const {setDisplay} = useContext(GlobalContext);
     const [name, setName] = useState('');
@@ -22,7 +23,8 @@ export const AddBudget = () => {
                 amount: amountNum,
                 amountUsed: 0,
                 author: firebase.auth().currentUser.uid,
-                color: color
+                color: color,
+                // date: firebase.firestore.Timestamp.now()
             }).then(() => {
                 setName('');
                 setAmount('');
