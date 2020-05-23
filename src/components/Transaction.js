@@ -3,6 +3,7 @@ import {GlobalContext} from '../context/GlobalState';
 import firebase from '../firebase';
 import { FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faCaretDown} from '@fortawesome/free-solid-svg-icons';
+import uuid from 'react-uuid';
 
 function useIsMountedRef(){
     const isMountedRef = useRef(null);
@@ -45,7 +46,7 @@ export const Transaction = ({ transaction }) => {
                 </button>
                 <div className="dropdown-content">
                     {transaction.categories.map(c => (
-                        <span style={{"background": BudgetData(c)[1]}}key={c}>
+                        <span style={{"background": BudgetData(c)[1]}}key={uuid()}>
                             {BudgetData(c)[0]}
                         </span>
                     ))}

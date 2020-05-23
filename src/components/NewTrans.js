@@ -42,10 +42,10 @@ export const NewTrans = () => {
     const handleChange = e =>{
         setBudgets([]);
         for (let i = 0, l = e.target.options.length; i < l; i++) {
-            if (e.target.options[i].selected) {
+            if (e.target.options[i].selected && budgets.indexOf(e.target.options[i].value)===-1) {
                 setBudgets([...budgets, e.target.options[i].value]);
             }
-          }
+        }
     }
 
     const submit = e => {
