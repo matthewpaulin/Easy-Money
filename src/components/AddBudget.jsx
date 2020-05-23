@@ -24,7 +24,7 @@ export const AddBudget = () => {
                 amountUsed: 0,
                 author: firebase.auth().currentUser.uid,
                 color: color,
-                // date: firebase.firestore.Timestamp.now()
+                date: firebase.firestore.Timestamp.now()
             }).then(() => {
                 setName('');
                 setAmount('');

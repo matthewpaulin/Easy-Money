@@ -48,7 +48,7 @@ const BudgetList = (sort="NAME_ASC") => {
 export const Budgets = () => {
     const {setDisplay} = useContext(GlobalContext);
     const {setBudget} = useContext(GlobalContext);
-    const [sortBy, setSortBy] = useState('NAME_ASC');
+    const [sortBy, setSortBy] = useState('DATE_DESC');
     const budgets = BudgetList(sortBy);
     
     return (
@@ -59,8 +59,8 @@ export const Budgets = () => {
                 <div>
                     <label>Sort By:</label>{" "}
                     <select value={sortBy} onChange={e => setSortBy(e.currentTarget.value)}> 
-                        {/* <option value='DATE_DESC'> Date (newest first)</option>
-                        <option value='DATE_ASC'> Date (oldest first)</option> */}
+                        <option value='DATE_DESC'> Date (newest first)</option>
+                        <option value='DATE_ASC'> Date (oldest first)</option>
                         <option disabled>--------</option>
                         <option value='NAME_ASC'> Name (A - Z)</option>
                         <option value='NAME_DESC'> Name (Z - A)</option>

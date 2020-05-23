@@ -513,10 +513,8 @@ select::-webkit-scrollbar-thumb {
 
 #budget{
   display: inline-block;
-  width: 100%;
+  width: 90%;
 }
-
-
 
 #budget-name{
   display: inline-block;
