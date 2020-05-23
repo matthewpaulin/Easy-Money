@@ -1,15 +1,6 @@
-import React, {useContext, useState, useEffect, useRef} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import firebase from '../firebase';
 import { GlobalContext } from '../context/GlobalState';
-
-// function useIsMountedRef(){
-//     const isMountedRef = useRef(null);
-//     useEffect(() => {
-//       isMountedRef.current = true;
-//       return () => isMountedRef.current = false;
-//     });
-//     return isMountedRef;
-// }
 
 const SORT_OPS = {
     "NAME_ASC": {column: 'title', direction: 'asc'},
@@ -20,7 +11,6 @@ const SORT_OPS = {
 
 const AcctList = (sort = "NAME_ASC") => {
     const [accounts, setAccounts] = useState([]);
-    // const isMountedRef = useIsMountedRef();
 
     useEffect(() =>{
         const unsub = 
@@ -32,9 +22,7 @@ const AcctList = (sort = "NAME_ASC") => {
                     id: doc.id,
                     ...doc.data()
                 }))
-                // if(isMountedRef.current){
                     setAccounts(newAccount)
-                // }
             })
             return () => unsub();
     }, [sort]);

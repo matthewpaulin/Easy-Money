@@ -73,7 +73,7 @@ export const Transaction = ({ transaction }) => {
                 for (let i = 0; i < transaction.categories.length; i++) {
                     firebase.firestore().collection('budgets').doc(transaction.categories[i]).update({
                         amountUsed: firebase.firestore.FieldValue.increment(-transaction.tVal)
-                    });
+                    }).catch(e => {});
                 }
             }}
              className= "delete-btn">X</button>

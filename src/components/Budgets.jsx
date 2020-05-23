@@ -1,4 +1,4 @@
-import React, {useContext, useState, useEffect, useRef} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import firebase from '../firebase';
 import { GlobalContext } from '../context/GlobalState';
 import { FontAwesomeIcon} from '@fortawesome/react-fontawesome';
@@ -13,18 +13,8 @@ const SORT_OPS = {
     "AMOUNT_DESC": {column: 'amount', direction: 'desc'}
 }
 
-// function useIsMountedRef(){
-//     const isMountedRef = useRef(null);
-//     useEffect(() => {
-//       isMountedRef.current = true;
-//       return () => isMountedRef.current = false;
-//     });
-//     return isMountedRef;
-// }
-
 const BudgetList = (sort="NAME_ASC") => {
     const [budgets, setBudgets] = useState([]);
-    // const isMountedRef = useIsMountedRef();
 
     useEffect(() =>{
         const unsub = 
@@ -35,15 +25,15 @@ const BudgetList = (sort="NAME_ASC") => {
                     id: doc.id,
                     ...doc.data()
                 }))
-                // if(isMountedRef.current){
                     setBudgets(newBudget);
-                // }
             })
         return () => unsub();
     }, [sort]);
 
     return budgets;
 }
+
+
 
 export const Budgets = () => {
     const {setDisplay} = useContext(GlobalContext);
@@ -93,6 +83,7 @@ export const Budgets = () => {
                     <div id="delete-account">
                         <button onClick = {() =>{
                             firebase.firestore().collection('budgets').doc(budget.id).delete()}
+
                         }
                         className= "del-acc-btn">X</button>
                         <button onClick = {() =>{
