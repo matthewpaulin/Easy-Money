@@ -37,7 +37,19 @@ export const Accounts = () => {
 
     return (
         <div className="accounts-container">
-            <h2>Accounts</h2>
+            <div className="sort">
+                <h2>Accounts</h2>
+                <div>
+                    <label>Sort By:</label>{" "}
+                    <select>
+                        <option> Name (A - Z)</option>
+                        <option> Name (Z - A)</option>
+                        <option disabled>--------</option>
+                        <option> Balance ($$$-$)</option>
+                        <option> Balance ($-$$$)</option>
+                    </select>
+                </div>
+            </div>
             {accounts.map((account) =>
                 <div key={account.id} className="accounts" >  
                     <div id="account">

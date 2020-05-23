@@ -629,3 +629,8 @@ select::-webkit-scrollbar-thumb {
 #selectBudgets option{
   border-bottom: 1px solid #446cb3;
 }
+
+.sort{
+  display: flex;
+  justify-content: space-between;
+}
