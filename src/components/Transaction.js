@@ -62,7 +62,7 @@ export const Transaction = ({ transaction }) => {
       <span id="transaction-name">{transaction.tName}</span>
       <span className={transaction.tVal < 0 ? "money minus" : "money plus"}>
         <span>
-          {lparen}${Math.abs(transaction.tVal)}
+          {lparen}${Math.abs(transaction.tVal).toFixed(2)}
           {rparen}
         </span>
       </span>

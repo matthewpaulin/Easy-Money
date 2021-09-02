@@ -75,7 +75,7 @@ export const Budgets = () => {
               <span>
                 $
                 {budget.amount > budget.amountUsed
-                  ? budget.amount - budget.amountUsed
+                  ? budget.amount - budget.amountUsed.toFixed(2)
                   : 0}{" "}
                 left
               </span>
@@ -102,7 +102,7 @@ export const Budgets = () => {
               >
                 <div id="budget-percentage">
                   <span>
-                    ${budget.amountUsed}/${budget.amount}
+                    ${budget.amountUsed.toFixed(2)}/${budget.amount.toFixed(2)}
                   </span>
                 </div>
               </div>
